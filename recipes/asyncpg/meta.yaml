@@ -1,0 +1,47 @@
+{% set name = "asyncpg" %}
+{% set version = "0.12.0" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "729e9ca808550bc3aad6e6266ea71278faadeed726a9dc72c6d203c1df0a737f" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  {{ hash_type }}: {{ hash_value }}
+
+build:
+  number: 0
+  script: python setup.py install  --single-version-externally-managed --record=record.txt
+  skip: True  # [py2k]
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+test:
+  imports:
+    - asyncpg
+
+about:
+  home: https://github.com/MagicStack/asyncpg
+  license: Apache 2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: A fast PostgreSQL Database Client Library for Python/asyncio.
+  description: |
+    asyncpg is a database interface library designed specifically for
+    PostgreSQL and Python/asyncio. asyncpg is an efficient, clean
+    implementation of PostgreSQL server binary protocol for use with Python's
+    asyncio framework.
+  doc_url: https://magicstack.github.io/asyncpg
+  dev_url: https://github.com/MagicStack/asyncpg
+
+extra:
+  recipe-maintainers:
+    - nehaljwani
