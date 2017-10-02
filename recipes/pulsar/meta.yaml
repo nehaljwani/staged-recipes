@@ -1,0 +1,80 @@
+{% set name = "pulsar" %}
+{% set version = "1.6.4" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "bb07d583ec36673884aa37caf76ce5bab65c9cb2bbdcc9b6ca1204fac402a0cd" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  {{ hash_type }}: {{ hash_value }}
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+  skip: True  # [py2k]
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - toolchain
+    - wheel
+  run:
+    - python
+    - greenlet
+    - certifi
+    - setuptools
+  #optional (conda v4.4, where are you?)
+  #  - uvloop
+  #  - psutil
+  #  - ujson
+  #  - setproctitle
+  #  - http-parser
+  #  - unidecode
+
+test:
+  imports:
+    - pulsar
+    - pulsar.apps
+    - pulsar.apps.data
+    - pulsar.apps.data.pulsards
+    - pulsar.apps.data.redis
+    - pulsar.apps.ds
+    - pulsar.apps.greenio
+    - pulsar.apps.http
+    - pulsar.apps.rpc
+    - pulsar.apps.socket
+    - pulsar.apps.test
+    - pulsar.apps.test.plugins
+    - pulsar.apps.ws
+    - pulsar.apps.wsgi
+    - pulsar.async
+    - pulsar.utils
+    - pulsar.utils.structures
+    - pulsar.utils.system
+    - pulsar.utils.tools
+    - pulsar_test
+
+about:
+  home: https://github.com/quantmind/pulsar
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Event driven concurrent framework for Python
+  description: |
+    Pulsar’s goal is to provide an easy way to build scalable network programs.
+    It can handle many client connections concurrently. Pulsar tells the
+    operating system (through epoll or select) that it should be notified when
+    a new connection is made, and then it goes to sleep. Pulsar uses the
+    asyncio module from the standard python library and it can be configured to
+    run in multi-processing mode.
+  doc_url: http://pythonhosted.org/pulsar
+  dev_url: https://github.com/quantmind/pulsar
+
+extra:
+  recipe-maintainers:
+    - nehaljwani
