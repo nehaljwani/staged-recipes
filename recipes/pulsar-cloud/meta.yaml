@@ -1,0 +1,50 @@
+{% set name = "pulsar-cloud" %}
+{% set version = "0.5.5" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "628dcdbcbdb919b8af12311234e9703d04244fc7119539fd12bf1071c550d930" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  {{ hash_type }}: {{ hash_value }}
+
+build:
+  number: 0
+  script: python setup.py install  --single-version-externally-managed --record=record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - wheel
+    - pulsar
+  run:
+    - python
+    - pulsar
+    - greenlet
+    - botocore >=1.4.62
+
+test:
+  imports:
+    - cloud
+    - cloud.asyncbotocore
+    - cloud.utils
+
+about:
+  home: https://github.com/quantmind/pulsar-cloud
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Asynchronous clients for AWS and Pusher
+  description: |
+      This library provides two asynchronous implementations of botocore.
+  doc_url: https://github.com/quantmind/pulsar-cloud/blob/master/README.rst
+  dev_url: https://github.com/quantmind/pulsar-cloud
+
+extra:
+  recipe-maintainers:
+    - nehaljwani
