@@ -1,0 +1,56 @@
+{% set name = "go" %}
+{% set version = "1.9" %}
+{% set sha256 = "a4ab229028ed167ba1986825751463605264e44868362ca8e7accc8be057e993" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://storage.googleapis.com/golang/go{{ version }}.src.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  # It's relocatable. $GOROOT FTW!
+  binary_relocation: False
+  # Worry about windows once the recipe is finalized
+  skip: True  # [win]
+
+requirements:
+  build:
+    - curl
+    - toolchain
+  # Optional (conda 4.4, where are you?)
+  # run:
+  #   - git
+
+test:
+  files:
+    - hello.go
+  commands:
+    - go version
+    - go help
+    - go run hello.go
+
+about:
+  home: http://golang.org
+  license: BSD-Style
+  license_family: BSD
+  license_file: LICENSE
+  summary: 'The Go Programming Language'
+  description: |
+    Go is expressive, concise, clean, and efficient. Its concurrency mechanisms
+    make it easy to write programs that get the most out of multicore and
+    networked machines, while its novel type system enables flexible and
+    modular program construction. Go compiles quickly to machine code yet has
+    the convenience of garbage collection and the power of run-time reflection.
+    It's a fast, statically typed, compiled language that feels like a
+    dynamically typed, interpreted language.
+  doc_url: https://golang.org/doc
+  dev_url: https://go.googlesource.com/go
+
+extra:
+  recipe-maintainers:
+    - nehaljwani
