@@ -1,3 +1,8 @@
+dir %VCINSTALLDIR%\
+dir %VCINSTALLDIR%\IDE
+dir %VCINSTALLDIR%\IDE\VC
+dir %VCINSTALLDIR%\IDE\VC\VCTargets
+
 set
 
 for %%O in (ON OFF) DO ( 
