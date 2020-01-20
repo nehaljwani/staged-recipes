@@ -1,7 +1,9 @@
 dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\"
-dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0"
+dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\"
 dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\"
 dir "C:\Program Files (x86)\MSBuild\"
+dir "C:\Program Files (x86)\MSBuild\15.0\"
+dir "C:\Program Files (x86)\MSBuild\Microsoft\"
 dir "C:\Program Files (x86)\"
 
 
