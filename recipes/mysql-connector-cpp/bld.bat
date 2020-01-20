@@ -1,3 +1,5 @@
+set
+
 for %%O in (ON OFF) DO ( 
    cmake -S. ^
      -Bbuild.%%O ^
