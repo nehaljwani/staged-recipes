@@ -24,8 +24,6 @@ dir %VCINSTALLDIR%\IDE\VC\VCTargets
 
 set
 
-set "VCTargetsPath=C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140"
-
 :THEREALDEAL
 
 SETLOCAL ENABLEDELAYEDEXPANSION
@@ -37,6 +35,7 @@ for /D %%A IN ("%PROGRAMFILES(X86)%\Microsoft Visual Studio\*") DO (
       SET "_POTENTIAL_MSBUILD_CANDIDATE=%%C\bin\msbuild.exe"
       if EXIST "!_POTENTIAL_MSBUILD_CANDIDATE!" (
  SET "MSBUILD_LOCATION=!_POTENTIAL_MSBUILD_CANDIDATE!"
+ SET "VCTargetsPath=%%~B\Common7\IDE\VC\VCTargets"
         GOTO STOP_MSBUILD_SEARCH
       )
     )
@@ -47,6 +46,7 @@ for /D %%A IN ("%PROGRAMFILES(X86)%\MSbuild\*") DO (
   SET "_POTENTIAL_MSBUILD_CANDIDATE=%%A\bin\msbuild.exe"
   if EXIST "!_POTENTIAL_MSBUILD_CANDIDATE!" (
     SET "MSBUILD_LOCATION=!_POTENTIAL_MSBUILD_CANDIDATE!"
+    SET "VCTargetsPath=C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140"
     GOTO STOP_MSBUILD_SEARCH
   )
 )
@@ -55,6 +55,7 @@ for /D %%A IN ("%PROGRAMFILES(X86)%\MSbuild\*") DO (
 
 echo 'wtf is going on?'
 echo !MSBUILD_LOCATION!
+echo %VCTargetsPath%
 
 for %%O in (ON OFF) DO ( 
    cmake -S. ^
