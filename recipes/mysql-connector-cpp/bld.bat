@@ -1,3 +1,10 @@
+echo "WTF is going on?"
+dir "%VCINSTALLDIR%\"
+dir "%VCINSTALLDIR%\IDE"
+dir "%VCINSTALLDIR%\IDE\VC"
+dir "%VCINSTALLDIR%\IDE\VC\VCTargets"
+
+
 dir %VCINSTALLDIR%\
 dir %VCINSTALLDIR%\IDE
 dir %VCINSTALLDIR%\IDE\VC
