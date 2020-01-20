@@ -1,3 +1,5 @@
+@echo ON
+
 GOTO THEREALDEAL
 
 dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\"
