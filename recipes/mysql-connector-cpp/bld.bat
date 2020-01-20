@@ -20,7 +20,7 @@ dir %VCINSTALLDIR%\IDE\VC\VCTargets
 
 set
 
-set VCTargetsPath="C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140"
+set "VCTargetsPath=C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140"
 
 for %%O in (ON OFF) DO ( 
    cmake -S. ^
