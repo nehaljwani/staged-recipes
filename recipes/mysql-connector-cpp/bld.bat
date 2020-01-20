@@ -1,3 +1,10 @@
+dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\"
+dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0"
+dir "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\"
+dir "C:\Program Files (x86)\MSBuild\"
+dir "C:\Program Files (x86)\"
+
+
 where msbuild
 echo "WTF is going on?"
 dir "%VCINSTALLDIR%\"
