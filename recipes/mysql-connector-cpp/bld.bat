@@ -1,3 +1,4 @@
+where msbuild
 echo "WTF is going on?"
 dir "%VCINSTALLDIR%\"
 dir "%VCINSTALLDIR%\IDE"
