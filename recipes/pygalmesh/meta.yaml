@@ -8,6 +8,10 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: f0166d8858432cefc930757206678024e490f10bcf46779fd549e533a125d3dc
+  patches:
+    - patches/0001-relax-test-tolerance.patch
+    - patches/0002-Do-not-force-C-standard-library.-Compiler-will-choos.patch
+    - patches/0003-Relax-tolerance-in-test_volume_from_surface.patch
 
 build:
   number: 0
@@ -21,12 +25,13 @@ requirements:
     - pip
     - eigen
     - cgal-cpp >=5.0.0,<6
-    - pybind11
+    - pybind11 >=2.2
     - mpfr
-    - gmp
+    - gmp   # [unix]
+    - mpir  # [win]
   run:
     - python
-    - meshio
+    - meshio >=4.0.0,<5.0.0
 
 test:
   imports:
