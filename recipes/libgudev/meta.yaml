@@ -1,0 +1,38 @@
+{% set version="234" %}
+
+package:
+  name: libgudev
+  version: {{ version }}
+
+source:
+  url: http://ftp.gnome.org/pub/gnome/sources/libgudev/{{ version }}/libgudev-{{ version }}.tar.xz
+  sha256: 1baeacacf0db42fa073ad5183d1decce9317857416a2b0f82ce3370d711a2e37
+
+build:
+  number: 0
+  skip: True  # [not linux]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ cdt('libudev-devel') }}
+    - {{ cdt('libudev') }}
+    - {{ cdt('glib2-devel') }}
+    - {{ cdt('glib2') }}
+    - make
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libgudev-1.0.so
+    - test -f ${PREFIX}/include/gudev-1.0/gudev/gudev.h
+
+about:
+  home: https://wiki.gnome.org/Projects/libgudev
+  license: GPL-v2.1
+  license_file: COPYING
+  summary: "A library providing GObject bindings for libudev"
+  dev_url: https://gitlab.gnome.org/GNOME/libgudev
+
+extra:
+  recipe-maintainers:
+    - nehaljwani
