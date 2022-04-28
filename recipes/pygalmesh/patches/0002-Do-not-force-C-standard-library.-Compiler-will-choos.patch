@@ -1,0 +1,35 @@
+From 2f7ed45d9f732057fe2a47898cff57d9c51041f9 Mon Sep 17 00:00:00 2001
+From: Nehal J Wani <nehaljw.kkd1@gmail.com>
+Date: Sun, 3 May 2020 12:25:37 -0400
+Subject: [PATCH 2/2] Do not force C++ standard library. Compiler will choose
+ on it's own
+
+---
+ setup.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index e4ce81b..42c9911 100644
+--- a/setup.py
++++ b/setup.py
+@@ -31,7 +31,7 @@ ext_modules = [
+             "src/version.cpp",
+             "src/pybind11.cpp",
+         ],
+-        language="C++",
++        language="c++",
+         include_dirs=[
+             os.environ.get("EIGEN_INCLUDE_DIR", "/usr/include/eigen3/"),
+             # Path to pybind11 headers
+@@ -39,7 +39,7 @@ ext_modules = [
+             get_pybind_include(user=True),
+         ],
+         # no CGAL libraries necessary from CGAL 5.0 onwards
+-        libraries=["stdc++", "gmp", "mpfr"],
++        libraries=["gmp", "mpfr"],
+     )
+ ]
+ 
+-- 
+2.21.1
+
