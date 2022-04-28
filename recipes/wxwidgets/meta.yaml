@@ -1,0 +1,95 @@
+{% set version = "3.0.5" %}
+
+package:
+  name: wxwidgets
+  version: {{ version }}
+
+source:
+  url: https://github.com/wxWidgets/wxWidgets/releases/download/v{{ version }}/wxWidgets-{{ version }}.tar.bz2
+  sha256: 8aacd56b462f42fb6e33b4d8f5d40be5abc3d3b41348ea968aa515cc8285d813
+
+build:
+  number: 1
+  skip: true  # [not linux]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - autotools_clang_conda        # [win]
+    - make
+    - pkg-config
+    - {{ cdt('libice-devel') }}  # [linux]
+    - {{ cdt('libsm-devel') }}  # [linux]
+    - {{ cdt('libx11-devel') }}  # [linux]
+    - {{ cdt('libxcomposite-devel') }}  # [linux]
+    - {{ cdt('libxcursor-devel') }}  # [linux]
+    - {{ cdt('libxdamage-devel') }}  # [linux]
+    - {{ cdt('libxext-devel') }}  # [linux]
+    - {{ cdt('libxi-devel') }}  # [linux]
+    - {{ cdt('libxxf86vm-devel') }}  # [linux]
+    - {{ cdt('libxinerama-devel') }}  # [linux]
+    - {{ cdt('libxfixes-devel') }}  # [linux]
+    - {{ cdt('libxrandr-devel') }}  # [linux]
+    - {{ cdt('libxrender-devel') }}  # [linux]
+    - {{ cdt('libxtst-devel') }}  # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('mesa-libegl-devel') }}  # [linux]
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+  host:
+    - gtk3
+    - zlib
+    - libpng
+    - libtiff
+    - xz
+    - glib
+    - libiconv
+    - expat
+    - fontconfig
+    - pango
+    - jpeg
+    - cairo
+    - gdk-pixbuf
+    - libglu
+    - mesalib
+    - xorg-libx11  # [linux]
+    - xorg-libsm   # [linux]
+    - xorg-libxi   # [linux]
+    - xorg-libxcursor  # [linux]
+  run:
+    - gtk3
+    - fontconfig
+    - pango
+    - xorg-libx11  # [linux]
+    - xorg-libsm   # [linux]
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libwx_baseu-3.0${SHLIB_EXT}  # [unix]
+    - test -f ${PREFIX}/include/wx-3.0/wx/wx.h           # [unix]
+    - wxrc --help
+
+about:
+  home: https://www.wxwidgets.org/
+  license: other
+  license_family: LGPL
+  license_file:
+    - docs/licence.txt
+    - docs/lgpl.txt
+    - docs/gpl.txt
+  summary: Cross-Platform GUI Library
+
+  description: |
+    wxWidgets is a C++ library that lets developers create applications for
+    Windows, macOS, Linux and other platforms with a single code base. It has
+    popular language bindings for Python, Perl, Ruby and many other languages,
+    and unlike other cross-platform toolkits, wxWidgets gives applications a
+    truly native look and feel because it uses the platform's native API rather
+    than emulating the GUI. It's also extensive, free, open-source and mature.
+  doc_url: https://docs.wxwidgets.org/
+  dev_url: https://github.com/wxWidgets/wxWidgets/
+
+extra:
+  recipe-maintainers:
+    - hmaarrfk
